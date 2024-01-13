@@ -5,9 +5,10 @@
   "description": "Support generate lando file to build env for my local",
   "version": "1.0.0",
   "author": {
-    "name": "Doan Khanh",
+    "name": "DoanKhanh.Dev",
     "email": "doankhanh.dev@gmail.com"
   },
+  "publisher": "DoanKhanh.Dev",
   "keywords": [
     "lando",
     "vscode",
