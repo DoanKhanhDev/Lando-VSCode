@@ -1,10 +1,25 @@
 {
   "name": "lando-vscode",
+  "icon": "images/icon.png",
   "displayName": "Lando VSCode",
-  "description": "Support generate file lando to build env for my local",
-  "version": "0.0.1",
+  "description": "Support generate lando file to build env for my local",
+  "version": "1.0.0",
+  "author": {
+    "name": "Doan Khanh",
+    "email": "doankhanh.dev@gmail.com"
+  },
+  "keywords": [
+    "lando",
+    "vscode",
+    "drupal"
+  ],
   "engines": {
-    "vscode": "^1.85.0"
+    "vscode": "^1.38.0"
+  },
+  "homepage": "https://github.com/DoanKhanhDev/Lando-VSCode",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DoanKhanhDev/Lando-VSCode.git"
   },
   "categories": [
     "Other"
@@ -12,10 +27,12 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "lando-vscode.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "lando-vscode.generateLandoFile",
+        "title": "Lando: Generate .lando.yml file"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",
@@ -23,12 +40,15 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
+    "@types/vscode": "^1.38.0",
     "@vscode/test-cli": "^0.0.4",
-    "@vscode/test-electron": "^2.3.8"
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "moment": "^2.30.1"
   }
 }

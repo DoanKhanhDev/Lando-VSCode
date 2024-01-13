@@ -1,65 +1,74 @@
-# lando-vscode README
-
-This is the README for your extension "lando-vscode". After writing up a brief description, we recommend including the following sections.
+# lando-vscode
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+Provide command in vscode to create a .lando.yml file.
 
-For example if there is an image subfolder under your extension project workspace:
+`crl + shift + p` and type `Lando: generate .lando.yml file`
 
-\!\[feature X\]\(images/feature-x.png\)
+Example:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+![feature generate file](./images/example.gif)
 
-## Requirements
+### Available configurations:
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- PHP: 8.1
+- Mysql: 5.7
+- Drupal: ^9
+- Drush: ^10
+- Composer: 2
+- Mailhog plugin
+- Xdebug on/off
+- Acquia/blt
 
-## Extension Settings
+### Xdebug3 Tutorial
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+Create `lando/php.ini` as below
 
-For example:
+```ini
+[PHP]
+xdebug.max_nesting_level = 256
+xdebug.show_exception_trace = 0
+xdebug.collect_params = 0
+xdebug.mode = debug
+xdebug.client_host = ${LANDO_HOST_IP}
+xdebug.client_port = 9003
+xdebug.start_with_request = yes
+xdebug.log = /tmp/xdebug.log
+```
 
-This extension contributes the following settings:
+Create `/.vscode/launch.json` as below
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Listen for Xdebug",
+      "type": "php",
+      "request": "launch",
+      "port": 9003,
+      "log": true,
+      "pathMappings": {
+        "/app/": "${workspaceFolder}/"
+      },
+      "xdebugSettings": {
+        "show_hidden": 1
+      }
+    }
+  ]
+}
+```
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
+Detailed Release Notes are available [here](https://github.com/DoanKhanhDev/Lando-VSCode/blob/master/CHANGELOG.md).
 
-### 1.0.0
+## Visual Studio Marketplace
 
-Initial release of ...
+This extension is available on the for [Visual Studio Code](https://marketplace.visualstudio.com/vscode).
 
-### 1.0.1
+## Related DOC
 
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+- Lando: https://docs.lando.dev/
+- Docker: https://docs.docker.com/
