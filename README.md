@@ -6,6 +6,12 @@ Provide command in vscode to create a .lando.yml file.
 
 `crl + shift + p` and type `Lando: generate .lando.yml file`
 
+`Lando: start`
+`Lando: info`
+`Lando: stop`
+`Lando: rebuild`
+`Lando: destroy`
+
 Example:
 
 ![feature generate file](./images/example.gif)
@@ -66,7 +72,7 @@ Detailed Release Notes are available [here](https://github.com/DoanKhanhDev/Land
 
 ## Visual Studio Marketplace
 
-This extension is available on the for [Visual Studio Code](https://marketplace.visualstudio.com/vscode).
+This extension is available on the for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DoanKhanhDev.lando-vscode).
 
 ## Related DOC
 
