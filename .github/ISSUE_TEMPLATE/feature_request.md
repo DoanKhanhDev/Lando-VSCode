@@ -1,20 +1,20 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
+title: "[Feature] - something"
+labels: feature
+assignees: DoanKhanhDev
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+### Overview
+Please help me describe your problem.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+### Features
+#### Feature title 1
+**Additional context**
+Add any other context or screenshots about the feature request here.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
-
+#### Feature title 2
 **Additional context**
 Add any other context or screenshots about the feature request here.
