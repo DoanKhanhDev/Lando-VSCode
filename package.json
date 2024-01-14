@@ -15,7 +15,7 @@
     "drupal"
   ],
   "engines": {
-    "vscode": "^1.38.0"
+    "vscode": "^1.75.0"
   },
   "homepage": "https://github.com/DoanKhanhDev/Lando-VSCode",
   "repository": {
@@ -32,6 +32,26 @@
       {
         "command": "lando-vscode.generateLandoFile",
         "title": "Lando: Generate .lando.yml file"
+      },
+      {
+        "command": "lando-vscode.startLando",
+        "title": "Lando: Start"
+      },
+      {
+        "command": "lando-vscode.infoLando",
+        "title": "Lando: Info"
+      },
+      {
+        "command": "lando-vscode.stopLando",
+        "title": "Lando: Stop"
+      },
+      {
+        "command": "lando-vscode.rebuildLando",
+        "title": "Lando: Rebuild"
+      },
+      {
+        "command": "lando-vscode.destroyLando",
+        "title": "Lando: Destroy"
       }
     ]
   },
