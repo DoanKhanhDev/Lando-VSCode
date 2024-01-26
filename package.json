@@ -53,7 +53,41 @@
         "command": "lando-vscode.destroyLando",
         "title": "Lando: Destroy"
       }
-    ]
+    ],
+    "submenus": [
+      {
+        "id": "lando.explorer.context",
+        "label": "Lando"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "lando.explorer.context",
+          "group": "Lando"
+        }
+      ],
+      "lando.explorer.context": [
+        {
+          "command": "lando-vscode.generateLandoFile"
+        },
+        {
+          "command": "lando-vscode.startLando"
+        },
+        {
+          "command": "lando-vscode.infoLando"
+        },
+        {
+          "command": "lando-vscode.stopLando"
+        },
+        {
+          "command": "lando-vscode.rebuildLando"
+        },
+        {
+          "command": "lando-vscode.destroyLando"
+        }
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
