@@ -11,6 +11,9 @@ Provide command in vscode to create a .lando.yml file.
 `Lando: stop`
 `Lando: rebuild`
 `Lando: destroy`
+`Lando: clear cache`
+`Lando: SSh`
+`Lando: Poweroff`
 
 Example:
 

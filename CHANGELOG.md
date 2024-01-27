@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.1.1] - 2024-27-01
+
+- Add run `lando clear cache` by command.
+- Add run `lando ssh` by command.
+- Add run `lando poweroff` by command.
+- Add menu to quick access to command.
+
 ## [1.1.0] - 2024-15-01
 
 ### Added
