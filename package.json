@@ -52,6 +52,18 @@
       {
         "command": "lando-vscode.destroyLando",
         "title": "Lando: Destroy"
+      },
+      {
+        "command": "lando-vscode.clearLando",
+        "title": "Lando: Clear cache"
+      },
+      {
+        "command": "lando-vscode.sshLando",
+        "title": "Lando: SSH"
+      },
+      {
+        "command": "lando-vscode.poweroffLando",
+        "title": "Lando: Poweroff"
       }
     ],
     "submenus": [
@@ -85,6 +97,15 @@
         },
         {
           "command": "lando-vscode.destroyLando"
+        },
+        {
+          "command": "lando-vscode.clearLando"
+        },
+        {
+          "command": "lando-vscode.sshLando"
+        },
+        {
+          "command": "lando-vscode.poweroffLando"
         }
       ]
     }
