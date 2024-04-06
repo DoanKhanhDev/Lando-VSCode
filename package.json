@@ -28,6 +28,32 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Lando VSCode",
+      "properties": {
+        "lando-vscode.recipe": {
+          "type": "string",
+          "description": "You can set default recipe when init .lando.yml file.",
+          "default": "drupal9",
+          "enum": [
+            "lamp",
+            "drupal8",
+            "drupal9",
+            "drupal10"
+          ]
+        },
+        "lando-vscode.mailhog": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow you enable/disable use mailhog in your project."
+        },
+        "lando-vscode.excludes": {
+          "type": "array",
+          "default": [],
+          "description": "Allow you ignore directries or files unneseccary. If is empty, you will build your project without ignore. Example: vendor,..."
+        }
+      }
+    },
     "commands": [
       {
         "command": "lando-vscode.generateLandoFile",

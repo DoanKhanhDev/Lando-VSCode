@@ -1,11 +1,12 @@
 name: $name$
-recipe: drupal9
+recipe: $recipe$
 config:
   composer_version: "2"
   via: apache:2.4
   webroot: $webroot$
   drush: "^10"
   xdebug: true
+$excludes$
 proxy:
   appserver:
     - $domain$.lndo.site
@@ -30,10 +31,7 @@ services:
       database: $name$
     # port forward custom to connect DB by heidiSQL,...
     # portforward: 1200
-  mailhog:
-    type: mailhog
-    hogfrom:
-      - appserver
+$mailhog_host$
 tooling:
   blt:
     service: appserver
@@ -52,6 +50,4 @@ tooling:
     cmd:
       - rm /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini && kill -USR2 $(pgrep -o php-fpm) > /dev/null || /etc/init.d/apache2 reload
       - tput setaf 1 && echo "Xdebug Off" && tput sgr 0 && echo
-plugins:
-  "@lando/mailhog": ../..
-  "@lando/php": ../../node_modules/@lando/php
+$mailhog_plugin$
