@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.1.2] - 2024-06-04
+
+- Provide the commonly configuration: recipe, excludes, mailhog.
+
 ## [1.1.1] - 2024-27-01
 
 - Add run `lando clear cache` by command.

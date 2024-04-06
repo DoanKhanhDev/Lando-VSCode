@@ -2,20 +2,32 @@
 
 ## Features
 
-Provide command in vscode to create a .lando.yml file.
+- Provide command in vscode to create a .lando.yml file.
 
 `crl + shift + p` and type `Lando: generate .lando.yml file`
 
 `Lando: start`
+
 `Lando: info`
+
 `Lando: stop`
+
 `Lando: rebuild`
+
 `Lando: destroy`
+
 `Lando: clear cache`
+
 `Lando: SSh`
+
 `Lando: Poweroff`
 
-Example:
+- You can add the commonly configuration for your projects in settings:
+  - recipe
+  - excludes
+  - mailhog
+
+**Example:**
 
 ![feature generate file](./images/example.gif)
 
