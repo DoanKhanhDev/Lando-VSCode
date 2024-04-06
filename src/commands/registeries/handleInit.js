@@ -1,6 +1,6 @@
 const vscode = require("vscode");
-const { destinationFile, sourceFile } = require('../../common/constants');
-const { log, isNotExistLandoFile } = require('../../common/common.js');
+const { destinationFile, sourceFile, configConstants } = require('../../common/constants');
+const { log, isNotExistLandoFile, setConfiguration, getConfigurations } = require('../../common/common.js');
 const ctx = require('../../common/context');
 
 async function handleInit() {
@@ -48,7 +48,7 @@ async function handleInit() {
 
 /**
  * Handle cancel for init lando.
- * 
+ *
  * @param {*} value
  */
 async function handleValue(value) {
@@ -67,6 +67,7 @@ async function handleValue(value) {
 async function generateFile(context, config) {
   const landoChanel = context.subscriptions['landoChanel'];
   const pathLandoFile = context.subscriptions['pathLandoFile'];
+  const commonConfig = await getConfigurations();
   try {
     const wsedit = new vscode.WorkspaceEdit();
     var data = await vscode.workspace.fs.readFile(
@@ -78,6 +79,44 @@ async function generateFile(context, config) {
     config.forEach((element) => {
       string = string.replaceAll(element.seachValue, element.replaceValue);
     });
+
+    // Apply the common configuration.
+    // Set the mailhog plugin.
+    const isMailHog = commonConfig.get('mailhog');
+    string = await setConfiguration(
+      isMailHog,
+      configConstants.configMailHog.tokenHost,
+      configConstants.configMailHog.host,
+      string
+    );
+    string = await setConfiguration(
+      isMailHog,
+      configConstants.configMailHog.tokenPlugin,
+      configConstants.configMailHog.plugin,
+      string
+    );
+
+    // Set the recipe.
+    const recipe = commonConfig.get('recipe');
+    string = await setConfiguration(
+      true,
+      configConstants.configRecipe.token,
+      recipe,
+      string
+    );
+
+    // Set the excludes.
+    let excludes = commonConfig.get('excludes');
+    excludes = excludes.map((element) => {
+      return '  - ' + element;
+    })
+    string = await setConfiguration(
+      excludes.length > 0,
+      configConstants.configExcludes.token,
+      configConstants.configExcludes.prefix + excludes.join('\n'),
+      string
+    );
+
     data = new TextEncoder().encode(string);
 
     // Create file
