@@ -55,7 +55,7 @@ xdebug.mode = debug
 xdebug.client_host = ${LANDO_HOST_IP}
 xdebug.client_port = 9003
 xdebug.start_with_request = yes
-xdebug.log = /tmp/xdebug.log
+xdebug.log = /app/lando/xdebug.log
 ```
 
 Create `/.vscode/launch.json` as below
