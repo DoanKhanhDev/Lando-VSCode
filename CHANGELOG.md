@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.1] - 2025-19-01
+
+- Update README.md
+
 ## [1.2.0] - 2025-19-01
 
 - Add generate php.ini file by command
