@@ -1,6 +1,6 @@
 const vscode = require("vscode");
 
-const { commands } = require('../constants');
+const { commandMachineNames } = require('../constants');
 const { handleInitLando } = require('./registeries/handleInitLando');
 const { handleInitPhp } = require('./registeries/handleInitPhp');
 const { handleStart } = require('./registeries/handleStart');
@@ -13,19 +13,28 @@ const { handleClear } = require('./registeries/handleClear');
 const { handleSsh } = require('./registeries/handleSsh');
 const { handlePoweroff } = require('./registeries/handlePoweroff');
 
-function registerCommands() {
-  vscode.commands.registerCommand(commands.generateLandoFile, handleInitLando);
-  vscode.commands.registerCommand(commands.generatePhpFile, handleInitPhp);
-  vscode.commands.registerCommand(commands.start, handleStart);
-  vscode.commands.registerCommand(commands.restart, handleRestart);
-  vscode.commands.registerCommand(commands.info, handleInfo);
-  vscode.commands.registerCommand(commands.stop, handleStop);
-  vscode.commands.registerCommand(commands.rebuild, handleRebuild);
-  vscode.commands.registerCommand(commands.destroy, handleDestroy);
-  vscode.commands.registerCommand(commands.clear, handleClear);
-  vscode.commands.registerCommand(commands.ssh, handleSsh);
-  vscode.commands.registerCommand(commands.poweroff, handlePoweroff);
-}
+/**
+ * @param {vscode.ExtensionContext} context
+ */
+function registerCommands(context) {
+  const commands = new Map([
+    [commandMachineNames.generateLandoFile, handleInitLando],
+    [commandMachineNames.generatePhpFile, handleInitPhp],
+    [commandMachineNames.start, handleStart],
+    [commandMachineNames.restart, handleRestart],
+    [commandMachineNames.info, handleInfo],
+    [commandMachineNames.stop, handleStop],
+    [commandMachineNames.rebuild, handleRebuild],
+    [commandMachineNames.destroy, handleDestroy],
+    [commandMachineNames.clear, handleClear],
+    [commandMachineNames.ssh, handleSsh],
+    [commandMachineNames.poweroff, handlePoweroff],
+  ]);
+
+  commands.forEach((handler, commandMachineName) => {
+    const disposable = vscode.commands.registerCommand(commandMachineName, handler);
+    context.subscriptions.push(disposable);
+  });}
 
 module.exports = {
   registerCommands

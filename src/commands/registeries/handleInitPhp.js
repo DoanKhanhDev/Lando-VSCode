@@ -7,7 +7,7 @@ const ctx = require('../../services/context');
 
 async function handleInitPhp() {
   const context = ctx.get();
-  const wsPath = context.subscriptions['wsPath'];
+  const wsPath = context.workspaceState.get('wsPath');
   const isNotExist = await isNotExistFile(wsPath, configPhpFile.destinationFile);
   if (isNotExist) {
     await generateFile(context);
@@ -20,8 +20,8 @@ async function handleInitPhp() {
  * @param {vscode.ExtensionContext} context
  */
 async function generateFile(context) {
-  const wsPath = context.subscriptions['wsPath'];
-  const landoChanel = context.subscriptions['landoChanel'];
+  const wsPath = context.workspaceState.get('wsPath');
+  const landoChanel = context.workspaceState.get('landoChanel');
   const pathPhpFile = vscode.Uri.file(wsPath + configPhpFile.destinationFile);
   try {
     const wsedit = new vscode.WorkspaceEdit();

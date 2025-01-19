@@ -1,4 +1,4 @@
-const commands = {
+const commandMachineNames = {
   generateLandoFile: 'lando-vscode.generateLandoFile',
   generatePhpFile: 'lando-vscode.generatePhpFile',
   start: 'lando-vscode.startLando',
@@ -39,7 +39,7 @@ const configPhpFile = {
 }
 
 module.exports = {
-  commands,
+  commandMachineNames,
   configLandoFile,
   configPhpFile,
   configConstants

@@ -18,11 +18,12 @@ async function isNotExistFile(path, destinationFile) {
 
 /**
  * @param {string} path
+ * @param {string} destinationFile
  * @returns Bool
  */
-async function isExistFile(path) {
-  if (!fs.existsSync(path)) {
-    vscode.window.showErrorMessage(`The ${path} file not exists!`);
+async function isExistFile(path, destinationFile) {
+  if (!fs.existsSync(path + destinationFile)) {
+    vscode.window.showErrorMessage(`The ${destinationFile} file not exists!`);
     return false;
   }
   return true;

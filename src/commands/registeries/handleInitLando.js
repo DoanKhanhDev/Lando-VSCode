@@ -7,7 +7,7 @@ const ctx = require('../../services/context');
 
 async function handleInitLando() {
   const context = ctx.get();
-  const wsPath = context.subscriptions['wsPath'];
+  const wsPath = context.workspaceState.get('wsPath');
   const isNotExist = await isNotExistFile(wsPath, configLandoFile.destinationFile);
   // Enter name project
   const name = isNotExist && await vscode.window.showInputBox({
@@ -66,8 +66,8 @@ async function handleValue(value) {
  * @param {Array} config
  */
 async function generateFile(context, config) {
-  const wsPath = context.subscriptions['wsPath'];
-  const landoChanel = context.subscriptions['landoChanel'];
+  const wsPath = context.workspaceState.get('wsPath');;
+  const landoChanel = context.workspaceState.get('landoChanel');
   const pathLandoFile = vscode.Uri.file(wsPath + configLandoFile.destinationFile);
   const commonConfig = await getConfigurations();
   try {

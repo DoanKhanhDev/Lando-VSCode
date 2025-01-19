@@ -1,25 +1,26 @@
 const vscode = require("vscode");
 const { isExistFile } = require("./file");
 const ctx = require('./context');
+const { configLandoFile } = require('../constants');
 
 /**
  * @param {string} command
  */
 async function handleTerminal(command) {
   const context = ctx.get();
-  const pathLandoFile = context.subscriptions['pathLandoFile'];
-  if (!await isExistFile(pathLandoFile.fsPath)) {
+  const wsPath = context.workspaceState.get('wsPath');;
+  if (!await isExistFile(wsPath, configLandoFile.destinationFile)) {
     return;
   }
-  let terminal = context.subscriptions['terminal'];
+  let terminal = context.workspaceState.get('terminal', null);
   if (terminal === undefined || terminal === null) {
     terminal = vscode.window.createTerminal(`Lando`);
-    context.subscriptions['terminal'] = terminal;
+    context.workspaceState.update(terminal, terminal);
   }
   terminal.show();
   terminal.sendText(command);
   vscode.window.onDidCloseTerminal(() => {
-    context.subscriptions['terminal'] = null;
+    context.workspaceState.update(terminal, null);
   })
   ctx.set(context);
 }
