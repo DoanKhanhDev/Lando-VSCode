@@ -1,5 +1,12 @@
 # Change Log
 
+## [1.2.0] - 2025-19-01
+
+- Add generate php.ini file by command
+- Add Xdebug 3 configuration support
+- Improve documentation for development setup
+- Enhanced error handling for Lando commands
+
 ## [1.1.2] - 2024-06-04
 
 - Provide the commonly configuration: recipe, excludes, mailhog.
