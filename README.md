@@ -42,7 +42,7 @@ Configure your project defaults through VS Code settings:
 ### 1. PHP Configuration
 Create `lando/php.ini`:
 
-```
+```ini
 [PHP]
 xdebug.max_nesting_level = 256
 xdebug.show_exception_trace = 0
@@ -59,7 +59,7 @@ error_log = /app/lando/php_error.log
 
 Create `/.vscode/launch.json` as below
 
-```
+```json
 {
   "version": "0.2.0",
   "configurations": [
