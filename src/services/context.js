@@ -2,7 +2,7 @@ var context;
 
 /**
  * Set context.
- * @param {*} ctx 
+ * @param {*} ctx
  */
 function set(ctx) {
   context = ctx;

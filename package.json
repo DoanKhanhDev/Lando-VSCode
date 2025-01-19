@@ -60,8 +60,16 @@
         "title": "Lando: Generate .lando.yml file"
       },
       {
+        "command": "lando-vscode.generatePhpFile",
+        "title": "Lando: Generate php.ini file"
+      },
+      {
         "command": "lando-vscode.startLando",
         "title": "Lando: Start"
+      },
+      {
+        "command": "lando-vscode.restartLando",
+        "title": "Lando: Restart"
       },
       {
         "command": "lando-vscode.infoLando",
@@ -110,7 +118,13 @@
           "command": "lando-vscode.generateLandoFile"
         },
         {
+          "command": "lando-vscode.generatePhpFile"
+        },
+        {
           "command": "lando-vscode.startLando"
+        },
+        {
+          "command": "lando-vscode.restartLando"
         },
         {
           "command": "lando-vscode.infoLando"

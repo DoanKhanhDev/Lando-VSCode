@@ -1,6 +1,8 @@
-const commands = {
-  generate: 'lando-vscode.generateLandoFile',
+const commandMachineNames = {
+  generateLandoFile: 'lando-vscode.generateLandoFile',
+  generatePhpFile: 'lando-vscode.generatePhpFile',
   start: 'lando-vscode.startLando',
+  restart: 'lando-vscode.restartLando',
   info: 'lando-vscode.infoLando',
   stop: 'lando-vscode.stopLando',
   rebuild: 'lando-vscode.rebuildLando',
@@ -25,12 +27,20 @@ const configConstants = {
     prefix: 'excludes:\n'
   }
 }
-const sourceFile = 'assets/.lando.yml';
-const destinationFile = '/.lando.yml';
+
+const configLandoFile = {
+  sourceFile: 'assets/.lando.yml',
+  destinationFile: '/.lando.yml',
+}
+
+const configPhpFile = {
+  sourceFile: 'assets/php.ini',
+  destinationFile: '/lando/php.ini',
+}
 
 module.exports = {
-  commands,
-  destinationFile,
-  sourceFile,
+  commandMachineNames,
+  configLandoFile,
+  configPhpFile,
   configConstants
 }

@@ -1,52 +1,48 @@
-# lando-vscode
+# Lando-VSCode Extension
 
-## Features
+A powerful VS Code extension that streamlines your Lando development workflow by providing easy-to-use commands and configurations.
 
-- Provide command in vscode to create a .lando.yml file.
+## Key Features
 
-`crl + shift + p` and type `Lando: generate .lando.yml file`
+### Quick Commands
+Access all commands via Command Palette (`Ctrl/Cmd + Shift + P`):
 
-`Lando: start`
+- `Lando: generate .lando.yml file` - Create new Lando configuration
+- `Lando: start` - Start Lando environment
+- `Lando: restart` - Restart containers
+- `Lando: info` - Display environment information
+- `Lando: stop` - Stop containers
+- `Lando: rebuild` - Rebuild containers
+- `Lando: destroy` - Remove containers
+- `Lando: clear cache` - Clear Lando cache
+- `Lando: SSH` - SSH into container
+- `Lando: poweroff` - Shutdown all containers
+- `Lando: generate php.ini file` - Create development PHP configuration
 
-`Lando: info`
+### Pre-configured Development Stack
 
-`Lando: stop`
+- PHP 8.1
+- MySQL 5.7
+- Drupal 9+
+- Drush 10+
+- Composer 2
+- Mailhog for email testing
+- Xdebug integration
+- Acquia BLT support
 
-`Lando: rebuild`
+### Customizable Settings
 
-`Lando: destroy`
+Configure your project defaults through VS Code settings:
+- Recipe selection
+- File exclusions
+- Mailhog settings
 
-`Lando: clear cache`
+## Xdebug 3 Configuration
 
-`Lando: SSh`
+### 1. PHP Configuration
+Create `lando/php.ini`:
 
-`Lando: Poweroff`
-
-- You can add the commonly configuration for your projects in settings:
-  - recipe
-  - excludes
-  - mailhog
-
-**Example:**
-
-![feature generate file](./images/example.gif)
-
-### Available configurations:
-
-- PHP: 8.1
-- Mysql: 5.7
-- Drupal: ^9
-- Drush: ^10
-- Composer: 2
-- Mailhog plugin
-- Xdebug on/off
-- Acquia/blt
-
-### Xdebug3 Tutorial
-
-Create `lando/php.ini` as below
-
-```ini
+```
 [PHP]
 xdebug.max_nesting_level = 256
 xdebug.show_exception_trace = 0
@@ -56,11 +52,14 @@ xdebug.client_host = ${LANDO_HOST_IP}
 xdebug.client_port = 9003
 xdebug.start_with_request = yes
 xdebug.log = /app/lando/xdebug.log
+display_errors = On
+log_errors = On
+error_log = /app/lando/php_error.log
 ```
 
 Create `/.vscode/launch.json` as below
 
-```json
+```
 {
   "version": "0.2.0",
   "configurations": [
@@ -70,6 +69,7 @@ Create `/.vscode/launch.json` as below
       "request": "launch",
       "port": 9003,
       "log": true,
+      "hostname": "localhost",
       "pathMappings": {
         "/app/": "${workspaceFolder}/"
       },
