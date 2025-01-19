@@ -8,6 +8,8 @@
 
 `Lando: start`
 
+`Lando: Restart`
+
 `Lando: info`
 
 `Lando: stop`
@@ -22,7 +24,9 @@
 
 `Lando: Poweroff`
 
-- You can add the commonly configuration for your projects in settings:
+`Lando: generate php.ini file(For Dev)`
+
+- You can add the sample configuration for your projects in settings:
   - recipe
   - excludes
   - mailhog
@@ -56,6 +60,9 @@ xdebug.client_host = ${LANDO_HOST_IP}
 xdebug.client_port = 9003
 xdebug.start_with_request = yes
 xdebug.log = /app/lando/xdebug.log
+display_errors = On
+log_errors = On
+error_log = /app/lando/php_error.log
 ```
 
 Create `/.vscode/launch.json` as below
@@ -70,6 +77,7 @@ Create `/.vscode/launch.json` as below
       "request": "launch",
       "port": 9003,
       "log": true,
+      "hostname": "localhost",
       "pathMappings": {
         "/app/": "${workspaceFolder}/"
       },
