@@ -1,15 +1,14 @@
 const vscode = require("vscode");
 const { registerCommands } = require('./src/commands/registerCommands');
-const { destinationFile } = require('./src/common/constants');
-const ctx = require('./src/common/context');
+const ctx = require('./src/services/context');
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function init(context) {
   const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
-  context.subscriptions['pathLandoFile'] = vscode.Uri.file(wsPath + destinationFile);
-  context.subscriptions['landoChanel'] = vscode.window.createOutputChannel("Lando");
+  context.workspaceState.update('wsPath', wsPath);
+  context.workspaceState.update('landoChanel', vscode.window.createTerminal('Lando'));
   ctx.set(context);
 }
 
@@ -18,14 +17,14 @@ function init(context) {
  */
 function activate(context) {
   init(context);
-  registerCommands();
+  registerCommands(context);
 }
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function deactivate(context) {
-  const terminal = context.subscriptions['terminal'];
+  const terminal = context.workspaceState.get('termial');
   if (terminal !== undefined || terminal !== null) {
     terminal.dispose();
   }

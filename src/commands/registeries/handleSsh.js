@@ -1,4 +1,4 @@
-const { handleTerminal } = require('../../common/common.js');
+const { handleTerminal } = require('../../services/terminal');
 
 async function handleSsh() {
   handleTerminal('lando ssh');
