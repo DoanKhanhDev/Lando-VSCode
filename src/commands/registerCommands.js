@@ -1,8 +1,10 @@
 const vscode = require("vscode");
 
-const { commands } = require('../common/constants');
-const { handleInit } = require('./registeries/handleInit');
+const { commands } = require('../constants');
+const { handleInitLando } = require('./registeries/handleInitLando');
+const { handleInitPhp } = require('./registeries/handleInitPhp');
 const { handleStart } = require('./registeries/handleStart');
+const { handleRestart } = require('./registeries/handleRestart');
 const { handleInfo } = require('./registeries/handleInfo');
 const { handleStop } = require('./registeries/handleStop');
 const { handleRebuild } = require('./registeries/handleRebuild');
@@ -12,8 +14,10 @@ const { handleSsh } = require('./registeries/handleSsh');
 const { handlePoweroff } = require('./registeries/handlePoweroff');
 
 function registerCommands() {
-  vscode.commands.registerCommand(commands.generate, handleInit);
+  vscode.commands.registerCommand(commands.generateLandoFile, handleInitLando);
+  vscode.commands.registerCommand(commands.generatePhpFile, handleInitPhp);
   vscode.commands.registerCommand(commands.start, handleStart);
+  vscode.commands.registerCommand(commands.restart, handleRestart);
   vscode.commands.registerCommand(commands.info, handleInfo);
   vscode.commands.registerCommand(commands.stop, handleStop);
   vscode.commands.registerCommand(commands.rebuild, handleRebuild);

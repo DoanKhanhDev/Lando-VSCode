@@ -1,5 +1,5 @@
 const vscode = require("vscode");
-const { handleTerminal } = require('../../common/common.js');
+const { handleTerminal } = require('../../services/terminal');
 
 async function handleDestroy() {
   let response = await vscode.window.showQuickPick([

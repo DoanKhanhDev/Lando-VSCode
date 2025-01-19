@@ -1,9 +1,9 @@
 const { handleTerminal } = require('../../services/terminal');
 
-async function handleRebuild() {
-  handleTerminal('lando rebuild -y');
+async function handleRestart() {
+  handleTerminal('lando restart');
 }
 
 module.exports = {
-  handleRebuild
+  handleRestart
 }

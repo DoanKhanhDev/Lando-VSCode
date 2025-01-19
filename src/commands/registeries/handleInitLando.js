@@ -1,13 +1,14 @@
 const vscode = require("vscode");
-const { destinationFile, sourceFile, configConstants } = require('../../common/constants');
-const { log, isNotExistLandoFile, setConfiguration, getConfigurations } = require('../../common/common.js');
-const ctx = require('../../common/context');
+const { configLandoFile, configConstants } = require('../../constants');
+const { isNotExistFile, createFile } = require('../../services/file');
+const { getConfigurations, setConfiguration } = require('../../services/configFactory');
+const { handleException } = require('../../services/exception');
+const ctx = require('../../services/context');
 
-async function handleInit() {
+async function handleInitLando() {
   const context = ctx.get();
-  const pathLandoFile = context.subscriptions['pathLandoFile'];
-  let isNotExist = await isNotExistLandoFile(pathLandoFile.fsPath);
-
+  const wsPath = context.subscriptions['wsPath'];
+  const isNotExist = await isNotExistFile(wsPath, configLandoFile.destinationFile);
   // Enter name project
   const name = isNotExist && await vscode.window.showInputBox({
     ignoreFocusOut: true,
@@ -65,13 +66,14 @@ async function handleValue(value) {
  * @param {Array} config
  */
 async function generateFile(context, config) {
+  const wsPath = context.subscriptions['wsPath'];
   const landoChanel = context.subscriptions['landoChanel'];
-  const pathLandoFile = context.subscriptions['pathLandoFile'];
+  const pathLandoFile = vscode.Uri.file(wsPath + configLandoFile.destinationFile);
   const commonConfig = await getConfigurations();
   try {
     const wsedit = new vscode.WorkspaceEdit();
     var data = await vscode.workspace.fs.readFile(
-      vscode.Uri.file(context.asAbsolutePath(sourceFile))
+      vscode.Uri.file(context.asAbsolutePath(configLandoFile.sourceFile))
     );
 
     // Replace content.
@@ -120,20 +122,13 @@ async function generateFile(context, config) {
     data = new TextEncoder().encode(string);
 
     // Create file
-    wsedit.createFile(pathLandoFile, { ignoreIfExists: true });
-    await vscode.workspace.fs.writeFile(pathLandoFile, data);
-    let isDone = await vscode.workspace.applyEdit(wsedit);
-    if (isDone) {
-      await log(landoChanel, `File created successfully at ${destinationFile}`, 'notice');
-      vscode.window.showInformationMessage(`File created successfully at ${destinationFile}`);
-    }
-    await vscode.workspace.openTextDocument(pathLandoFile);
+    createFile(wsedit, pathLandoFile, data, landoChanel);
+
   } catch (err) {
-    await log(landoChanel, `${err}`, 'error');
-    vscode.window.showInformationMessage(`${err}`);
+    handleException(err, landoChanel);
   }
 }
 
 module.exports = {
-  handleInit
+  handleInitLando
 }
