@@ -20,11 +20,7 @@ async function handleInitPhp() {
  * @param {vscode.ExtensionContext} context
  */
 async function generateFile(context) {
-  const wsPath = context.workspaceState.get('wsPath');
-  const landoChanel = context.workspaceState.get('landoChanel');
-  const pathPhpFile = vscode.Uri.file(wsPath + configPhpFile.destinationFile);
   try {
-    const wsedit = new vscode.WorkspaceEdit();
     var data = await vscode.workspace.fs.readFile(
       vscode.Uri.file(context.asAbsolutePath(configPhpFile.sourceFile))
     );
@@ -34,10 +30,10 @@ async function generateFile(context) {
     data = new TextEncoder().encode(string);
 
     // Create file
-    createFile(wsedit, pathPhpFile, data, landoChanel);
+    await createFile(configPhpFile.destinationFile, data);
 
   } catch (err) {
-    handleException(err, landoChanel);
+    await handleException(err);
   }
 }
 

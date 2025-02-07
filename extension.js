@@ -8,7 +8,7 @@ const ctx = require('./src/services/context');
 function init(context) {
   const wsPath = vscode.workspace.workspaceFolders[0].uri.fsPath;
   context.workspaceState.update('wsPath', wsPath);
-  context.workspaceState.update('landoChanel', vscode.window.createTerminal('Lando'));
+  context.workspaceState.update('landoChanel', vscode.window.createOutputChannel('Lando'));
   ctx.set(context);
 }
 

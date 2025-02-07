@@ -66,12 +66,8 @@ async function handleValue(value) {
  * @param {Array} config
  */
 async function generateFile(context, config) {
-  const wsPath = context.workspaceState.get('wsPath');;
-  const landoChanel = context.workspaceState.get('landoChanel');
-  const pathLandoFile = vscode.Uri.file(wsPath + configLandoFile.destinationFile);
   const commonConfig = await getConfigurations();
   try {
-    const wsedit = new vscode.WorkspaceEdit();
     var data = await vscode.workspace.fs.readFile(
       vscode.Uri.file(context.asAbsolutePath(configLandoFile.sourceFile))
     );
@@ -122,10 +118,10 @@ async function generateFile(context, config) {
     data = new TextEncoder().encode(string);
 
     // Create file
-    createFile(wsedit, pathLandoFile, data, landoChanel);
+    await createFile(configLandoFile.destinationFile, data);
 
   } catch (err) {
-    handleException(err, landoChanel);
+    await handleException(err);
   }
 }
 
