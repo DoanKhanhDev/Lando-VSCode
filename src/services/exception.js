@@ -3,10 +3,9 @@ const { log } = require("./log");
 
 /**
  * @param {any} err
- * @param {vscode.OutputChannel} landoChanel
  */
-async function handleException(err, landoChanel) {
-  await log(landoChanel, `${err}`, 'error');
+async function handleException(err) {
+  await log(`${err}`, 'error');
   vscode.window.showInformationMessage(`${err}`);
 }
 

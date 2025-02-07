@@ -12,17 +12,14 @@ async function handleTerminal(command) {
   if (!await isExistFile(wsPath, configLandoFile.destinationFile)) {
     return;
   }
-  let terminal = context.workspaceState.get('terminal', null);
-  if (terminal === undefined || terminal === null) {
-    terminal = vscode.window.createTerminal(`Lando`);
-    context.workspaceState.update(terminal, terminal);
+
+  // Create a new terminal or reuse an existing terminal.
+  let terminal = vscode.window.terminals.find((terminal) => terminal.name === 'Lando');
+  if (!terminal) {
+    terminal = vscode.window.createTerminal('lando');
   }
   terminal.show();
   terminal.sendText(command);
-  vscode.window.onDidCloseTerminal(() => {
-    context.workspaceState.update(terminal, null);
-  })
-  ctx.set(context);
 }
 
 module.exports = {

@@ -1,7 +1,7 @@
 const fs = require("fs");
 const vscode = require("vscode");
 const { log } = require("./log");
-const { configLandoFile } = require("../constants");
+const ctx = require('./context');
 
 /**
  * @param {string} path
@@ -30,20 +30,28 @@ async function isExistFile(path, destinationFile) {
 }
 
 /**
- * @param {vscode.WorkspaceEdit} wsedit
- * @param {vscode.Uri} pathLandoFile
+ * @param {string} pathFile
  * @param {any} data
- * @param {vscode.OutputChannel} landoChanel
  */
-async function createFile(wsedit, pathLandoFile, data, landoChanel) {
-  wsedit.createFile(pathLandoFile, { ignoreIfExists: true });
-  await vscode.workspace.fs.writeFile(pathLandoFile, data);
-  let isDone = await vscode.workspace.applyEdit(wsedit);
+async function createFile(pathFile, data) {
+  const context = ctx.get();
+  const wsPath = context.workspaceState.get('wsPath');
+  const wsedit = new vscode.WorkspaceEdit();
+  const uriFile = vscode.Uri.file(wsPath + pathFile);
+
+  // Create file and write data.
+  wsedit.createFile(uriFile, { ignoreIfExists: true });
+  await vscode.workspace.fs.writeFile(uriFile, data);
+
+  // Apply edit.
+  const isDone = await vscode.workspace.applyEdit(wsedit);
   if (isDone) {
-    await log(landoChanel, `File created successfully at ${configLandoFile.destinationFile}`, 'notice');
-    vscode.window.showInformationMessage(`File created successfully at ${configLandoFile.destinationFile}`);
+    await log(`File created successfully at ${pathFile}`, 'notice');
+    vscode.window.showInformationMessage(`File created successfully at ${pathFile}`);
   }
-  await vscode.workspace.openTextDocument(pathLandoFile);
+
+  // Open file.
+  await vscode.workspace.openTextDocument(uriFile);
 }
 
 module.exports = {
