@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.2.3] - 2025-15-03
+
+- Fix bug generate files.
+
 ## [1.2.2] - 2025-07-02
 
 - Fix bug missing display messsage after genarate files.
