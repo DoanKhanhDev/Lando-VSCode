@@ -10,10 +10,12 @@ const ctx = require('./context');
 async function log(message, type) {
   const currentTime = moment().format('Y-m-d H:i:s');
   const context = ctx.get();
-  const landoChanel = context.workspaceState.get('landoChanel');
+  const landoChanel = context.subscriptions['landoChanel'] || null;
+  if (landoChanel === null) {
+    return;
+  }
   landoChanel.appendLine(`[${currentTime}] [${type}] ${message}`);
 }
-
 module.exports = {
   log
 }
