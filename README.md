@@ -8,6 +8,8 @@ A powerful VS Code extension that streamlines your Lando development workflow by
 Access all commands via Command Palette (`Ctrl/Cmd + Shift + P`):
 
 - `Lando: generate .lando.yml file` - Create new Lando configuration
+- `Lando: generate php.ini file` - Create file php.int to support debug
+- `Lando: Generate launch.json file for Xdebug` - Create new Launch configuration support debug
 - `Lando: start` - Start Lando environment
 - `Lando: restart` - Restart containers
 - `Lando: info` - Display environment information
@@ -17,7 +19,6 @@ Access all commands via Command Palette (`Ctrl/Cmd + Shift + P`):
 - `Lando: clear cache` - Clear Lando cache
 - `Lando: SSH` - SSH into container
 - `Lando: poweroff` - Shutdown all containers
-- `Lando: generate php.ini file` - Create development PHP configuration
 
 ### Pre-configured Development Stack
 
@@ -26,38 +27,26 @@ Access all commands via Command Palette (`Ctrl/Cmd + Shift + P`):
 - Drupal 9+
 - Drush 10+
 - Composer 2
-- Mailhog for email testing
-- Xdebug integration
-- Acquia BLT support
+- Mailhog
+- Xdebug 3
 
-### Customizable Settings
+### Configuration Guide
 
-Configure your project defaults through VS Code settings:
-- Recipe selection
-- File exclusions
-- Mailhog settings
+#### 1. Setup .lando.yml
+Use the command palette to generate a basic configuration or customize manually:
 
-## Xdebug 3 Configuration
-
-### 1. PHP Configuration
-Create `lando/php.ini`:
-
-```ini
-[PHP]
-xdebug.max_nesting_level = 256
-xdebug.show_exception_trace = 0
-xdebug.collect_params = 0
-xdebug.mode = debug
-xdebug.client_host = ${LANDO_HOST_IP}
-xdebug.client_port = 9003
-xdebug.start_with_request = yes
-xdebug.log = /app/lando/xdebug.log
-display_errors = On
-log_errors = On
-error_log = /app/lando/php_error.log
+```yaml
+name: my-project
+recipe: drupal9
+config:
+  php: '8.1'
+  via: apache
+  webroot: web
+  database: mysql:5.7
 ```
 
-Create `/.vscode/launch.json` as below
+#### 2. Xdebug Setup
+Create `.vscode/launch.json`:
 
 ```json
 {
@@ -81,15 +70,28 @@ Create `/.vscode/launch.json` as below
 }
 ```
 
-## Release Notes
+## Requirements
 
-Detailed Release Notes are available [here](https://github.com/DoanKhanhDev/Lando-VSCode/blob/master/CHANGELOG.md).
+- Visual Studio Code 1.60.0 or higher
+- Docker Desktop
+- Lando
 
-## Visual Studio Marketplace
+## Installation
 
-This extension is available on the for [Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=DoanKhanhDev.lando-vscode).
+1. Open VS Code
+2. Press `Ctrl/Cmd + P`
+3. Type `ext install DoanKhanhDev.lando-vscode`
 
-## Related DOC
+## Support
 
-- Lando: https://docs.lando.dev/
-- Docker: https://docs.docker.com/
+For issues and feature requests, please visit our [GitHub repository](https://github.com/DoanKhanhDev/Lando-VSCode/issues).
+
+## Buy Me A Coffee
+
+You can support my work by buying me a coffee!
+
+[![Buy Me A Coffee](./images/orange_img.png)](https://buymeacoffee.com/doankhanh.dev)
+
+## License
+
+MIT
