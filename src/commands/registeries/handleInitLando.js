@@ -120,6 +120,12 @@ async function generateFile(context, config) {
     // Create file
     await createFile(configLandoFile.destinationFile, data);
 
+    if (commonConfig.get('generateAll')) {
+      // Run command to generate all.
+      await vscode.commands.executeCommand('lando-vscode.generatePhpFile');
+      await vscode.commands.executeCommand('lando-vscode.generateLaunchFile');
+    }
+
   } catch (err) {
     await handleException(err);
   }
