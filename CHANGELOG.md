@@ -1,5 +1,10 @@
 # Change Log
 
+## [1.2.4] - 2025-07-06
+
+- Add a configuration to allow users to generate all files with a command.
+- Add a command to allow users to create a launch.json file to support debugging.
+
 ## [1.2.3] - 2025-15-03
 
 - Fix bug generate files.
