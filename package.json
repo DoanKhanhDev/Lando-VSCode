@@ -51,6 +51,11 @@
           "type": "array",
           "default": [],
           "description": "Allow you ignore directries or files unneseccary. If is empty, you will build your project without ignore. Example: vendor,..."
+        },
+        "lando-vscode.generateAll": {
+          "type": "boolean",
+          "default": true,
+          "description": "Allow you generate all files when run command 'Generate .lando.yml file'. If is false, you will only generate .lando.yml file."
         }
       }
     },
@@ -62,6 +67,10 @@
       {
         "command": "lando-vscode.generatePhpFile",
         "title": "Lando: Generate php.ini file"
+      },
+      {
+        "command": "lando-vscode.generateLaunchFile",
+        "title": "Lando: Generate launch.json file for Xdebug"
       },
       {
         "command": "lando-vscode.startLando",
@@ -119,6 +128,9 @@
         },
         {
           "command": "lando-vscode.generatePhpFile"
+        },
+        {
+          "command": "lando-vscode.generateLaunchFile"
         },
         {
           "command": "lando-vscode.startLando"
