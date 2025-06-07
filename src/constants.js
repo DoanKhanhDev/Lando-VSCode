@@ -39,15 +39,15 @@ const configPhpFile = {
   destinationFile: '/lando/php.ini',
 }
 
-const configLanuchFile = {
+const configLaunchFile = {
   sourceFile: 'assets/launch.json',
-  destinationFile: '/.vscode/lanuch.json',
+  destinationFile: '/.vscode/launch.json',
 }
 
 module.exports = {
   commandMachineNames,
   configLandoFile,
   configPhpFile,
-  configLanuchFile,
+  configLaunchFile,
   configConstants
 }

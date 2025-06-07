@@ -1,14 +1,14 @@
 const vscode = require("vscode");
-const { configLanuchFile } = require('../../constants');
+const { configLaunchFile } = require('../../constants');
 const { isNotExistFile, createFile } = require('../../services/file');
 const { handleException } = require("../../services/exception");
 const ctx = require('../../services/context');
 
 
-async function handleLanuchXdebug() {
+async function handleLaunchXdebug() {
   const context = ctx.get();
   const wsPath = context.workspaceState.get('wsPath');
-  const isNotExist = await isNotExistFile(wsPath, configLanuchFile.destinationFile);
+  const isNotExist = await isNotExistFile(wsPath, configLaunchFile.destinationFile);
   if (isNotExist) {
     await generateFile(context);
   }
@@ -22,7 +22,7 @@ async function handleLanuchXdebug() {
 async function generateFile(context) {
   try {
     var data = await vscode.workspace.fs.readFile(
-      vscode.Uri.file(context.asAbsolutePath(configLanuchFile.sourceFile))
+      vscode.Uri.file(context.asAbsolutePath(configLaunchFile.sourceFile))
     );
 
     // Replace content.
@@ -30,7 +30,7 @@ async function generateFile(context) {
     data = new TextEncoder().encode(string);
 
     // Create file
-    await createFile(configLanuchFile.destinationFile, data);
+    await createFile(configLaunchFile.destinationFile, data);
 
   } catch (err) {
     await handleException(err);
@@ -38,5 +38,5 @@ async function generateFile(context) {
 }
 
 module.exports = {
-  handleLanuchXdebug
+  handleLaunchXdebug
 }
