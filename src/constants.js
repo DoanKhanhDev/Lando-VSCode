@@ -1,6 +1,7 @@
 const commandMachineNames = {
   generateLandoFile: 'lando-vscode.generateLandoFile',
   generatePhpFile: 'lando-vscode.generatePhpFile',
+  generateLaunchFile: 'lando-vscode.generateLaunchFile',
   start: 'lando-vscode.startLando',
   restart: 'lando-vscode.restartLando',
   info: 'lando-vscode.infoLando',
@@ -38,9 +39,15 @@ const configPhpFile = {
   destinationFile: '/lando/php.ini',
 }
 
+const configLanuchFile = {
+  sourceFile: 'assets/launch.json',
+  destinationFile: '/.vscode/lanuch.json',
+}
+
 module.exports = {
   commandMachineNames,
   configLandoFile,
   configPhpFile,
+  configLanuchFile,
   configConstants
 }

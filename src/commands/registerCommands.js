@@ -3,6 +3,7 @@ const vscode = require("vscode");
 const { commandMachineNames } = require('../constants');
 const { handleInitLando } = require('./registeries/handleInitLando');
 const { handleInitPhp } = require('./registeries/handleInitPhp');
+const { handleLanuchXdebug } = require('./registeries/handleLanuchXdebug');
 const { handleStart } = require('./registeries/handleStart');
 const { handleRestart } = require('./registeries/handleRestart');
 const { handleInfo } = require('./registeries/handleInfo');
@@ -20,6 +21,7 @@ function registerCommands(context) {
   const commands = new Map([
     [commandMachineNames.generateLandoFile, handleInitLando],
     [commandMachineNames.generatePhpFile, handleInitPhp],
+    [commandMachineNames.generateLaunchFile, handleLanuchXdebug],
     [commandMachineNames.start, handleStart],
     [commandMachineNames.restart, handleRestart],
     [commandMachineNames.info, handleInfo],
@@ -35,7 +37,7 @@ function registerCommands(context) {
     const disposable = vscode.commands.registerCommand(commandMachineName, handler);
     context.subscriptions.push(disposable);
   });}
-
+5
 module.exports = {
   registerCommands
 }
